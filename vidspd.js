@@ -1,55 +1,46 @@
 // Select the node that will be observed for mutations
-const targetNode = document.querySelector('title');;
+// const targetNode = document.querySelector('title');;
+// const targetNode = document.getElementsByTagName("video")[0].playbackRate;
+const targetNode = document.getElementsByTagName("video")[0];
 
 // Options for the observer (which mutations to observe)
-const config = {childList: true};
+// const config = {childList: true};
+// const config = { attributes: true, childList: true, subtree: true };
+const config = { attributes: true};
 
-// Video Title
-const initialTitle = document.title;
+// Video Speed
+var videoSpeed = browser.storage.local.get("videoSpeed");
+if (!(typeof videoSpeed === 'number')){
+  browser.storage.local.set({"videoSpeed":1.0});
+  videoSpeed = 2.0;
+}
 
-// Video length
-var videoLengthSeconds = document.getElementsByTagName("video")[0].duration;
+function syncVidSpeed() {
 
-const pad = (number) => {
-    let retstr = number+"";
-    if(retstr.length<2){
-        retstr = "0"+retstr;
-    }
-    return retstr;
-};
+  if( !(targetNode.playbackRate === videoSpeed)  )  {
+    targetNode.playbackRate = videoSpeed;
+  }  
 
-const makeDurationString = (seconds) => {
-    const secR = Math.round(seconds);
-    secs = Math.floor(secR)%60;
-    mins = Math.floor(secR/60)%(60);
-    hrs  = Math.floor(secR/(60*60));
-    len  =  (secR<60)       ? (secs+"").length   : 
-            (secR<(60*60))  ? (mins+"").length+2 : 
-                               (hrs+"").length+4 ;
-    
-    return ("_"+len+" "+hrs+":"+pad(mins)+":"+pad(secs)+" ");
-};
-
-// Tab title
-const finalTitle = makeDurationString(videoLengthSeconds)+initialTitle;
+  // if( !(document.getElementsByTagName("video")[0].playbackRate === videoSpeed)  )  {
+  //   document.getElementsByTagName("video")[0].playbackRate = videoSpeed;
+  // }  
+}
 
 // Callback function to execute when mutations are observed
-const callback = (mutationList, observer) => {
+const mutationCallback = (mutationList, observer) => {
   for (const mutation of mutationList) {
-    if (mutation.type === "childList") {
-      if(!document.title.startsWith("_"))  {
-        document.title = finalTitle;
-      }
+    if (mutation.type === "attributes") {
+      syncVidSpeed();
     } 
   }
 };
 
 // Create an observer instance linked to the callback function
-const observer = new MutationObserver(callback);
+const mutationObserver = new MutationObserver(mutationCallback);
 
 
 
 // Start observing the target node for configured mutations
-observer.observe(targetNode, config);
+mutationObserver.observe(targetNode, config);
 
 
