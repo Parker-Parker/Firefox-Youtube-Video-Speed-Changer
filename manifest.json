@@ -7,7 +7,7 @@
         {
             "run_at": "document_end",
             "matches": ["*://*.youtube.com/watch*"],
-            "js": ["vidlen.js"]
+            "js": ["vidspd.js"]
         }
     ],
     "browser_action": {

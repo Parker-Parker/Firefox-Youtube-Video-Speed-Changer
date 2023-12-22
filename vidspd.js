@@ -1,3 +1,4 @@
+console.log("Wideo Speed plugin loaded: started")
 // Select the node that will be observed for mutations
 // const targetNode = document.querySelector('title');;
 // const targetNode = document.getElementsByTagName("video")[0].playbackRate;
@@ -19,6 +20,7 @@ function syncVidSpeed() {
 
   if( !(targetNode.playbackRate === videoSpeed)  )  {
     targetNode.playbackRate = videoSpeed;
+    console.log("Speed set:"+videoSpeed )
   }  
 
   // if( !(document.getElementsByTagName("video")[0].playbackRate === videoSpeed)  )  {
@@ -42,5 +44,5 @@ const mutationObserver = new MutationObserver(mutationCallback);
 
 // Start observing the target node for configured mutations
 mutationObserver.observe(targetNode, config);
-
+console.log("Wideo Speed plugin loaded: Live")
 
