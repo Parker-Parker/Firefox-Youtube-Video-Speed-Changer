@@ -10,11 +10,6 @@
             "js": ["vidlen.js"]
         }
     ],
-    "background":[
-        {
-            "":""
-        }
-    ],
     "browser_action": {
         "default_title": "Video Speed Extension",
         "default_popup": "popup/popup.html"
