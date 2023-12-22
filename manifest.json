@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "Video Length Extension",
-    "version": "1.1",
-    "description": "Adds length of video to tab title to enable sorting",
+    "name": "Video Speed Extension",
+    "version": "0.5",
+    "description": "Allow setting arbitrary playback speed of youtube videos",
     "content_scripts": [
         {
             "run_at": "document_end",
@@ -10,10 +10,24 @@
             "js": ["vidlen.js"]
         }
     ],
+    "background":[
+        {
+            "":""
+        }
+    ],
+    "browser_action": {
+        "default_title": "Video Speed Extension",
+        "default_popup": "popup/popup.html"
+    },
+
     "browser_specific_settings": {
         "gecko": {
           "id": "Youtube-Video-Length-Fetcher@Parker-Parker.Github.io"
         }
-    } 
+    }, 
+
+    "permissions": [
+        "storage"
+    ]
     
 }
