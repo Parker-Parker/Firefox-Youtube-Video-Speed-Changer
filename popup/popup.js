@@ -1,5 +1,5 @@
 
-async function runthing() {
+async function runthing() { //this feels sloppy but i just want a synchronous blocking browser.storage.local.get is that too much to ask 
 
     /**
     * Listen for clicks on the buttons, and send the appropriate message to

@@ -1,3 +1,7 @@
+async function runthing() { //this feels sloppy but i just want a synchronous blocking browser.storage.local.get is that too much to ask 
+
+
+
 console.log("Wideo Speed plugin loaded: started")
 // Select the node that will be observed for mutations
 const targetNode = document.getElementsByTagName("video")[0];
@@ -8,8 +12,14 @@ const config = { attributes: true};
 //TODO: may need to add 2nd observer that checks if document.getElementsByTagName("video")[0]'s parent childList has changed, then remake mutationObserver for document.getElementsByTagName("video")[0].playbackSpeed
 
 // Video Speed
-console.log(browser.storage.local.get("videoSpeed"));
-var videoSpeed = browser.storage.local.get("videoSpeed");
+// console.log(browser.storage.local.get("videoSpeed"));
+    var videoSpeed = 1.0;
+    // browser.storage.local.get("videoSpeed").then();
+    var result = await browser.storage.local.get("videoSpeed");
+    videoSpeed = result.videoSpeed;
+
+    console.log(videoSpeed);
+
 if (!(typeof videoSpeed === 'number')){
   browser.storage.local.set({"videoSpeed":2.0});
   videoSpeed = 2.0;
@@ -64,4 +74,6 @@ browser.storage.onChanged.addListener(storedSpeedCallback);
 console.log("Wideo Speed plugin loaded: Live")
 
 
+}
+runthing();
 
