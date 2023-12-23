@@ -4,7 +4,9 @@
 */
 console.log("Popup began");
 
-var videoSpeed = browser.storage.local.get("videoSpeed");
+console.log(browser.storage.local.get("videoSpeed"));
+
+var videoSpeed = browser.storage.local.get("videoSpeed").then();
 if (!(typeof videoSpeed === 'number')){
   console.log("Initializing storage to 3");
   browser.storage.local.set({"videoSpeed":3.0});

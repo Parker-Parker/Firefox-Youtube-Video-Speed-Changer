@@ -8,6 +8,7 @@ const config = { attributes: true};
 //TODO: may need to add 2nd observer that checks if document.getElementsByTagName("video")[0]'s parent childList has changed, then remake mutationObserver for document.getElementsByTagName("video")[0].playbackSpeed
 
 // Video Speed
+console.log(browser.storage.local.get("videoSpeed"));
 var videoSpeed = browser.storage.local.get("videoSpeed");
 if (!(typeof videoSpeed === 'number')){
   browser.storage.local.set({"videoSpeed":2.0});
