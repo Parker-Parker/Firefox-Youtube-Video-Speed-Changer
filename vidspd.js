@@ -10,7 +10,7 @@ const config = { attributes: true};
 // Video Speed
 var videoSpeed = browser.storage.local.get("videoSpeed");
 if (!(typeof videoSpeed === 'number')){
-  browser.storage.local.set({"videoSpeed":2.5});
+  browser.storage.local.set({"videoSpeed":2.0});
   videoSpeed = 2.0;
 }
 
