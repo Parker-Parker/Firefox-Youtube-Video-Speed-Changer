@@ -20,14 +20,14 @@ function listenForClicks() {
 
     console.log("Registering listener");
     document.addEventListener("click", (e) => {
-        console.log("Listener Triggered");
+        console.log("Listener Triggered"+input.value);
 
         if (e.target.tagName !== "BUTTON" || !e.target.closest("#popup-content")) {
             // Ignore when click is not on a button within <div id="popup-content">.
             return;
         } else {
             // videoSpeed = Number(document.getElementById("speed-input").getAttribute("value"));
-            videoSpeed = Number(input.getAttribute("value"));
+            videoSpeed = Number(input.value);
             if(!isNaN(videoSpeed)){
                 console.log("setting video speed: "+videoSpeed);
                 browser.storage.local.set({"videoSpeed":videoSpeed});
